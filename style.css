@@ -1,0 +1,93 @@
+body {
+    background: #2f2f2e;
+}
+
+#map div {
+    float: left;
+}
+
+.map-row {
+    clear: both;
+}
+
+.map-row div {
+    float: left;
+}
+
+.tile1 {
+    width: 32px;
+    height: 32px;
+    background: url('img/tile1.png');
+}
+
+.tile2 {
+    width: 32px;
+    height: 32px;
+    background: url('img/tile2.png');
+}
+
+.tile3 {
+    width: 32px;
+    height: 32px;
+    background: url('img/tile3.png');
+}
+
+.tile4 {
+    width: 32px;
+    height: 32px;
+    background: url('img/tile4.png');
+}
+
+.tile5 {
+    width: 32px;
+    height: 32px;
+    background: url('img/tile5.png');
+}
+
+.wall-top {
+    width: 322px;
+    height: 41px;
+    background: url('img/wall-top.png');
+}
+
+.wall-bottom {
+    width: 322px;
+    height: 8px;
+    background: url('img/wall-bottom.png');
+}
+
+.wall-top-left {
+    width: 8px;
+    height: 41px;
+    background: url('img/wall-top-left.png');
+}
+
+.wall-top-right {
+    width: 8px;
+    height: 41px;
+    background: url('img/wall-top-right.png');
+}
+
+.wall-bottom-left {
+    width: 8px;
+    height: 8px;
+    background: url('img/wall-bottom-left.png');
+}
+
+.wall-bottom-right {
+    width: 8px;
+    height: 8px;
+    background: url('img/wall-bottom-right.png');
+}
+
+.wall-left {
+    width: 9px;
+    height: 32px;
+    background: url('img/wall-left.png');
+}
+
+.wall-right {
+    width: 9px;
+    height: 32px;
+    background: url('img/wall-right.png');
+}
