@@ -14,19 +14,19 @@ body {
     background-image: url('img/wall-top-left.png'), url('img/wall-top-right.png');
     background-position: left top, right top;
     background-repeat: no-repeat, no-repeat;
-    /* hack, trebuia 10px */
-    padding-left: 11px;
+    padding-left: 10px;
     padding-right: 10px;
     height: 32px;
 }
 
 .tile {
     width: 32px;
-    height: 32px;
+    /* hack trebuia 32px */
+    height: 33px;
     /* hack pt ca plm */
     margin-left: -2px;
     /* hack pt ca plm */
-    margin-right: -1px;
+    margin-right: -2px;
 }
 
 .tile1 {
@@ -47,6 +47,17 @@ body {
 
 .tile5 {
     background: url('img/tile5.png') no-repeat;
+}
+
+.tile-ladder {
+    background: url('img/tile-ladder.png') no-repeat;
+}
+
+.adventurer {
+    background: url('img/adventurer-1.png') no-repeat;
+    background-position: center;
+    width: 32px;
+    height: 33px;
 }
 
 .entrance {
