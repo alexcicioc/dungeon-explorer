@@ -7,7 +7,7 @@ body {
 }
 
 .map-row div {
-    display: inline-block;
+    float:left;
 }
 
 .map-row {
@@ -21,12 +21,7 @@ body {
 
 .tile {
     width: 32px;
-    /* hack trebuia 32px */
-    height: 33px;
-    /* hack pt ca plm */
-    margin-left: -2px;
-    /* hack pt ca plm */
-    margin-right: -2px;
+    height: 32px;
 }
 
 .tile1 {
@@ -57,7 +52,7 @@ body {
     background: url('img/adventurer-1.png') no-repeat;
     background-position: center;
     width: 32px;
-    height: 33px;
+    height: 32px;
 }
 
 .entrance {
