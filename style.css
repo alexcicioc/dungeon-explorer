@@ -7,7 +7,7 @@ body {
 }
 
 .map-row div {
-    float:left;
+    float: left;
 }
 
 .map-row {
@@ -48,11 +48,30 @@ body {
     background: url('img/tile-ladder.png') no-repeat;
 }
 
-.adventurer {
-    background: url('img/adventurer-1.png') no-repeat;
+@keyframes adventurer {
+    from {
+        background: url('img/adventurer-2.png') no-repeat;
+        background-position: center;
+    }
+    to {
+        background: url('img/adventurer-3.png') no-repeat;
+        background-position: center;
+    }
+}
+
+#adventurer {
+    background: url('img/adventurer-2.png') no-repeat;
     background-position: center;
     width: 32px;
     height: 32px;
+    animation-name: adventurer;
+    animation-duration: 0.8s;
+    animation-delay: 4s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    position: absolute;
+    top: 80px;
+    left: 18px;
 }
 
 .entrance {
