@@ -1,5 +1,6 @@
 body {
     background: #2f2f2e;
+    overflow: hidden;
 }
 
 #map {
