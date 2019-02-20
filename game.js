@@ -31,7 +31,7 @@ function renderTiles(mapJson) {
             rowElement.append(tileElement);
         });
 
-        $('#map').append(rowElement);
+        $('.map-content').append(rowElement);
     });
 }
 
