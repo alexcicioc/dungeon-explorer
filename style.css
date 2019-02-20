@@ -48,6 +48,13 @@ body {
     background: url('img/tile-ladder.png') no-repeat;
 }
 
+.fog-of-war {
+    position:absolute;
+    left: -2035px;
+    top: -1050px;
+    opacity: 0.7;
+}
+
 @keyframes adventurer {
     from {
         background: url('img/adventurer-2.png') no-repeat;
