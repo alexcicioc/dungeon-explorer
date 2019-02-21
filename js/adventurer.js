@@ -9,7 +9,6 @@ class Adventurer {
 
   changeCoordinates(row, column) {
     this.position = { row, column };
-    map.changeFog(row, column);
     $("#positionX").html(row + 1);
     $("#positionY").html(column + 1);
   }
@@ -57,12 +56,17 @@ class Adventurer {
       left: `+=${this.tileSize * left}`,
       top: `+=${this.tileSize * top}`
     };
+	
+	const row = this.position.row + top;
+	const column = this.position.column + left;
+	
+    map.changeFog(row, column);
 
     $("#adventurer").animate(direction, 500, () => {
       this.movementLock = false;
       this.changeCoordinates(
-        this.position.row + top,
-        this.position.column + left
+        row,
+        column
       );
     });
   }
