@@ -25,33 +25,35 @@ class Map {
   }
 
   isMovementAllowed(left, top) {
-    if (adventurer.movementLock) {
-      return false;
-    }
     const [sizeX, sizeY] = this.size;
 
-    if (left < 0 && adventurer.y <= 0) {
+    if (left < 0 && adventurer.position.column <= 0) {
       return false;
     }
 
-    if (left > 0 && adventurer.y + left >= sizeX) {
+    if (left > 0 && adventurer.position.column + left >= sizeX) {
       return false;
     }
 
-    if (top < 0 && adventurer.x <= 0) {
+    if (top < 0 && adventurer.position.row <= 0) {
       return false;
     }
-    console.log(sizeY);
-    if (top > 0 && adventurer.x + top >= sizeY) {
+
+    if (top > 0 && adventurer.position.row + top >= sizeY) {
       return false;
     }
 
     return true;
   }
 
-  move(left, top) {
-    if (this.isMovementAllowed(left, top)) {
-      adventurer.move(left, top);
-    }
+  changeFog(row, column) {
+    this.tiles.forEach((tileRow, tileRowIndex) => {
+      tileRow.forEach((tile, tileColumnIndex) => {
+        const distance =
+          Math.abs(tileRowIndex - row) + Math.abs(tileColumnIndex - column);
+        const opacity = 1 - distance * 0.3;
+        tile.css({ opacity });
+      });
+    });
   }
 }
