@@ -24,28 +24,6 @@ class Map {
     });
   }
 
-  isMovementAllowed(left, top) {
-    const [sizeX, sizeY] = this.size;
-
-    if (left < 0 && adventurer.position.column <= 0) {
-      return false;
-    }
-
-    if (left > 0 && adventurer.position.column + left >= sizeX) {
-      return false;
-    }
-
-    if (top < 0 && adventurer.position.row <= 0) {
-      return false;
-    }
-
-    if (top > 0 && adventurer.position.row + top >= sizeY) {
-      return false;
-    }
-
-    return true;
-  }
-
   changeFog(row, column) {
     this.tiles.forEach((tileRow, tileRowIndex) => {
       tileRow.forEach((tile, tileColumnIndex) => {

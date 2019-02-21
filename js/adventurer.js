@@ -21,8 +21,34 @@ class Adventurer {
     });
   }
 
+  isMovementAllowed(left, top) {
+    const [sizeX, sizeY] = map.size;
+
+    if (this.movementLock) {
+      return false;
+    }
+
+    if (left < 0 && adventurer.position.column <= 0) {
+      return false;
+    }
+
+    if (left > 0 && adventurer.position.column + left >= sizeX) {
+      return false;
+    }
+
+    if (top < 0 && adventurer.position.row <= 0) {
+      return false;
+    }
+
+    if (top > 0 && adventurer.position.row + top >= sizeY) {
+      return false;
+    }
+
+    return true;
+  }
+
   move(left, top) {
-    if (this.movementLock || !map.isMovementAllowed(left, top)) {
+    if (!this.isMovementAllowed(left, top)) {
       return false;
     }
     this.movementLock = true;
