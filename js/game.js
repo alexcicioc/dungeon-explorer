@@ -1,78 +1,45 @@
-const api = 'https://api.myjson.com/bins/gfi3u';
+const api = "https://api.myjson.com/bins/ppady";
+
+let adventurer;
+let map;
 let grid = [];
-let animationLock = false;
 
-function renderTiles(mapJson) {
-  mapJson.forEach((rowJson, rowIndex) => {
-    const rowElement = $('<div></div>');
-    rowElement.addClass('map-row');
-
-    rowJson.forEach((tileJson, columnIndex) => {
-      const tileElement = $('<div></div>');
-      tileElement.addClass('tile');
-      tileElement.addClass(tileJson);
-      tileElement.attr('data-x', rowIndex);
-      tileElement.attr('data-y', columnIndex);
-      rowElement.append(tileElement);
-    });
-
-    $('.map-content').append(rowElement);
-  });
-}
-function renderMap(mapJson) {
-  renderTiles(mapJson);
-}
-
-function initMap() {
+const initScenario = () => {
   $.ajax({
     async: false,
-    type: 'GET',
+    type: "GET",
     url: api,
-    success(mapJson) {
-      renderMap(mapJson);
-      grid = mapJson;
+    success(response) {
+      adventurer = new Adventurer(response.start[0], response.start[1]);
+      map = new Map(response.mapSize, response.map);
     }
   });
-}
+};
 
-function initAdventurer() {
+initScenario();
 
-}
-
-initMap();
-
-
-function go(direction) {
-  animationLock = true;
-
-  $('#adventurer').animate(direction, 500, () => {
-    animationLock = false;
-  });
-}
-
-
-$(document).keydown((event) => {
-  if (animationLock) {
+$(document).keydown(event => {
+  if (adventurer.movementLocked) {
     return;
   }
   switch (event.which) {
     case 37:
       // left
-      go({ left: '-=32' });
-      break;
-    case 38:
-      // up
-      go({ top: '-=32' });
+      map.move(-1, 0);
       break;
     case 39:
       // right
-      go({ left: '+=32' });
+      map.move(1, 0);
+      break;
+    case 38:
+      // up
+      map.move(0, -1);
       break;
     case 40:
       // down
-      go({ top: '+=32' });
+      map.move(0, 1);
       break;
     default:
-      // exit this handler for other keys
+    // exit this handler for other keys
   }
 });
