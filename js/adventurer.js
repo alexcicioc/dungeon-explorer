@@ -23,24 +23,25 @@ class Adventurer {
 
   isMovementAllowed(left, top) {
     const [sizeX, sizeY] = map.size;
+    const {column, row} = this.position;
 
     if (this.movementLock) {
       return false;
     }
 
-    if (left < 0 && adventurer.position.column <= 0) {
+    if (left < 0 && column <= 0) {
       return false;
     }
 
-    if (left > 0 && adventurer.position.column + left >= sizeX) {
+    if (left > 0 && column + left >= sizeX) {
       return false;
     }
 
-    if (top < 0 && adventurer.position.row <= 0) {
+    if (top < 0 && row <= 0) {
       return false;
     }
 
-    if (top > 0 && adventurer.position.row + top >= sizeY) {
+    if (top > 0 && row + top >= sizeY) {
       return false;
     }
 
@@ -62,9 +63,14 @@ class Adventurer {
     const column = this.position.column + left;
 
     map.changeFog(row, column);
+    let animation = 'adventurer-move-right';
+
+    if (left < 0) {
+      animation = 'adventurer-move-left';
+    }
 
     $("#adventurer").css({
-      "animation-name": "adventurer-move",
+      "animation-name": animation,
       "animation-duration": "0.5s",
       "animation-delay": "0s"
     });

@@ -73,7 +73,7 @@ body {
     }
 }
 
-@keyframes adventurer-move {
+@keyframes adventurer-move-right {
     0% {
         background: url('img/adventurer/movement/right-1.png') no-repeat;
         background-position: center;
@@ -88,6 +88,25 @@ body {
     }
     100% {
         background: url('img/adventurer/movement/right-4.png') no-repeat;
+        background-position: center;
+    }
+}
+
+@keyframes adventurer-move-left {
+    0% {
+        background: url('img/adventurer/movement/left-1.png') no-repeat;
+        background-position: center;
+    }
+    33% {
+        background: url('img/adventurer/movement/left-2.png') no-repeat;
+        background-position: center;
+    }
+    66% {
+        background: url('img/adventurer/movement/left-3.png') no-repeat;
+        background-position: center;
+    }
+    100% {
+        background: url('img/adventurer/movement/left-4.png') no-repeat;
         background-position: center;
     }
 }
