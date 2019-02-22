@@ -1,7 +1,6 @@
 class Adventurer {
   constructor(startX, startY) {
     this.position = { row: 0, column: 0 };
-    this.tileSize = 32;
     this.movementLock = false;
     this.changeCoordinates(startX, startY);
     this.moveToEntrance();
@@ -15,8 +14,8 @@ class Adventurer {
 
   moveToEntrance() {
     $("#adventurer").css({
-      left: 18 + this.tileSize * this.position.column,
-      top: 60 + this.tileSize * this.position.row
+      left: config.leftOffset + config.tileSize * this.position.column,
+      top: config.topOffset + config.tileSize * this.position.row
     });
     map.changeFog(this.position.row, this.position.column);
   }
@@ -55,8 +54,8 @@ class Adventurer {
     this.movementLock = true;
 
     const direction = {
-      left: `+=${this.tileSize * left}`,
-      top: `+=${this.tileSize * top}`
+      left: `+=${config.tileSize * left}`,
+      top: `+=${config.tileSize * top}`
     };
 
     const row = this.position.row + top;
@@ -71,16 +70,14 @@ class Adventurer {
 
     $("#adventurer").css({
       "animation-name": animation,
-      "animation-duration": "0.5s",
-      "animation-delay": "0s"
+      "animation-duration": "0.5s"
     });
     $("#adventurer").animate(direction, 1000, () => {
       this.movementLock = false;
       this.changeCoordinates(row, column);
       $("#adventurer").css({
         "animation-name": "adventurer",
-        "animation-duration": "0.8s",
-        "animation-delay": "4s"
+        "animation-duration": "0.8s"
       });
     });
   }

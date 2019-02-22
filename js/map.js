@@ -34,4 +34,9 @@ class Map {
       });
     });
   }
+
+  placeMonster(monster) {
+    const {row, column} = monster.position;
+    this.tiles[row][column].append(monster.element);
+  }
 }
