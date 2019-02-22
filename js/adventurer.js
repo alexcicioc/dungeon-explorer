@@ -63,9 +63,19 @@ class Adventurer {
 
     map.changeFog(row, column);
 
-    $("#adventurer").animate(direction, 500, () => {
+    $("#adventurer").css({
+      "animation-name": "adventurer-move",
+      "animation-duration": "0.5s",
+      "animation-delay": "0s"
+    });
+    $("#adventurer").animate(direction, 1000, () => {
       this.movementLock = false;
       this.changeCoordinates(row, column);
+      $("#adventurer").css({
+        "animation-name": "adventurer",
+        "animation-duration": "0.8s",
+        "animation-delay": "4s"
+      });
     });
   }
 }

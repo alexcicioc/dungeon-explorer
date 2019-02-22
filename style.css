@@ -23,7 +23,7 @@ body {
 }
 
 .map-row {
-    background-image: url('img/wall-top-left.png'), url('img/wall-top-right.png');
+    background-image: url('img/walls/top-left.png'), url('img/walls/top-right.png');
     background-position: left top, right top;
     background-repeat: no-repeat, no-repeat;
     padding-left: 9px;
@@ -39,42 +39,61 @@ body {
 }
 
 .tile1 {
-    background: url('img/tile1.png') no-repeat;
+    background: url('img/tiles/1.png') no-repeat;
 }
 
 .tile2 {
-    background: url('img/tile2.png') no-repeat;
+    background: url('img/tiles/2.png') no-repeat;
 }
 
 .tile3 {
-    background: url('img/tile3.png') no-repeat;
+    background: url('img/tiles/3.png') no-repeat;
 }
 
 .tile4 {
-    background: url('img/tile4.png') no-repeat;
+    background: url('img/tiles/4.png') no-repeat;
 }
 
 .tile5 {
-    background: url('img/tile5.png') no-repeat;
+    background: url('img/tiles/5.png') no-repeat;
 }
 
 .tile-ladder {
-    background: url('img/tile-ladder.png') no-repeat;
+    background: url('img/tiles/ladder.png') no-repeat;
 }
 
 @keyframes adventurer {
     from {
-        background: url('img/adventurer-2.png') no-repeat;
+        background: url('img/adventurer/standby-left.png') no-repeat;
         background-position: center;
     }
     to {
-        background: url('img/adventurer-3.png') no-repeat;
+        background: url('img/adventurer/standby-right.png') no-repeat;
+        background-position: center;
+    }
+}
+
+@keyframes adventurer-move {
+    0% {
+        background: url('img/adventurer/movement/right-1.png') no-repeat;
+        background-position: center;
+    }
+    33% {
+        background: url('img/adventurer/movement/right-2.png') no-repeat;
+        background-position: center;
+    }
+    66% {
+        background: url('img/adventurer/movement/right-3.png') no-repeat;
+        background-position: center;
+    }
+    100% {
+        background: url('img/adventurer/movement/right-4.png') no-repeat;
         background-position: center;
     }
 }
 
 #adventurer {
-    background: url('img/adventurer-2.png') no-repeat;
+    background: url('img/adventurer/standby-left.png') no-repeat;
     background-position: center;
     width: 32px;
     height: 32px;
@@ -90,20 +109,20 @@ body {
 .entrance {
     width: 52px;
     height: 41px;
-    background: url('img/entrance.png') black;
+    background: url('img/walls/entrance.png') black;
     margin: 0 auto;
 }
 
 .wall-top {
     height: 41px;
-    background-image: url('img/wall-top-left.png'), url('img/wall-top-right.png'), url('img/wall-top.png');
+    background-image: url('img/walls/top-left.png'), url('img/walls/top-right.png'), url('img/walls/top.png');
     background-position: left top, right top, left top;
     background-repeat: no-repeat, no-repeat, repeat;
 }
 
 .wall-bottom {
     height: 8px;
-    background-image: url('img/wall-bottom-left.png'), url('img/wall-bottom-right.png'), url('img/wall-bottom.png');
+    background-image: url('img/walls/bottom-left.png'), url('img/walls/bottom-right.png'), url('img/walls/bottom.png');
     background-position: left top, right top, left top;
     background-repeat: no-repeat, no-repeat, repeat;
 }
