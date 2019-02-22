@@ -1,9 +1,21 @@
 body {
     background: #2f2f2e;
+    overflow: hidden;
+}
+
+#header {
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12px;
+}
+
+#header span {
+    font-weight: bold;
 }
 
 #map {
     display: inline-block;
+    background: black;
 }
 
 .map-row div {
@@ -22,6 +34,8 @@ body {
 .tile {
     width: 32px;
     height: 32px;
+    opacity: 0.1;
+    transition: opacity 0.5s;
 }
 
 .tile1 {
@@ -70,8 +84,7 @@ body {
     animation-iteration-count: infinite;
     animation-direction: alternate;
     position: absolute;
-    top: 80px;
-    left: 18px;
+    z-index: 10000;
 }
 
 .entrance {
