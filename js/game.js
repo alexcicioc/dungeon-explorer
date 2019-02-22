@@ -2,7 +2,6 @@ const api = "https://api.myjson.com/bins/ppady";
 
 let adventurer;
 let map;
-let grid = [];
 
 const initScenario = () => {
   $.ajax({
@@ -12,6 +11,9 @@ const initScenario = () => {
     success(response) {
       map = new Map(response.mapSize, response.map);
       adventurer = new Adventurer(response.start[0], response.start[1]);
+      map.placeMonster(Monster.createMonster('bat', 3, 8));
+      map.placeMonster(Monster.createMonster('bat', 1, 5));
+
     }
   });
 };
