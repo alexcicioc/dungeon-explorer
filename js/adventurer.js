@@ -18,6 +18,7 @@ class Adventurer {
       left: 18 + this.tileSize * this.position.column,
       top: 60 + this.tileSize * this.position.row
     });
+    map.changeFog(this.position.row, this.position.column);
   }
 
   isMovementAllowed(left, top) {
@@ -56,18 +57,15 @@ class Adventurer {
       left: `+=${this.tileSize * left}`,
       top: `+=${this.tileSize * top}`
     };
-	
-	const row = this.position.row + top;
-	const column = this.position.column + left;
-	
+
+    const row = this.position.row + top;
+    const column = this.position.column + left;
+
     map.changeFog(row, column);
 
     $("#adventurer").animate(direction, 500, () => {
       this.movementLock = false;
-      this.changeCoordinates(
-        row,
-        column
-      );
+      this.changeCoordinates(row, column);
     });
   }
 }

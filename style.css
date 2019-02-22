@@ -35,7 +35,7 @@ body {
     width: 32px;
     height: 32px;
     opacity: 0.1;
-	transition: opacity 0.5s;
+    transition: opacity 0.5s;
 }
 
 .tile1 {
@@ -84,7 +84,7 @@ body {
     animation-iteration-count: infinite;
     animation-direction: alternate;
     position: absolute;
-	z-index:10000;
+    z-index: 10000;
 }
 
 .entrance {
