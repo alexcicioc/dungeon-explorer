@@ -2,7 +2,6 @@ const api = "https://api.myjson.com/bins/ppady";
 
 let adventurer;
 let map;
-let spacePressed = false;
 let dialogSequence;
 
 const updateCoordinates = (row, column) => {
@@ -57,7 +56,6 @@ $(document).keydown(event => {
       if (dialogSequence) {
         dialogSequence.showNext();
       }
-      spacePressed = true;
       break;
     case 37:
       // left
