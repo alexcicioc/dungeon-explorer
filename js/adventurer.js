@@ -1,28 +1,14 @@
-class Adventurer {
-  constructor(startX, startY) {
-    this.position = { row: 0, column: 0 };
+class Adventurer extends Sprite {
+  constructor(row, column, element) {
+    super(row, column, element);
     this.movementLock = false;
-    this.changeCoordinates(startX, startY);
     this.moveToEntrance();
-  }
-
-  changeCoordinates(row, column) {
-    this.position = { row, column };
-    $("#positionX").html(row + 1);
-    $("#positionY").html(column + 1);
-  }
-
-  moveToEntrance() {
-    $("#adventurer").css({
-      left: config.leftOffset + config.tileSize * this.position.column,
-      top: config.topOffset + config.tileSize * this.position.row
-    });
-    map.changeFog(this.position.row, this.position.column);
+    updateCoordinates(row, column);
   }
 
   isMovementAllowed(left, top) {
     const [sizeX, sizeY] = map.size;
-    const {column, row} = this.position;
+    const { column, row } = this.position;
 
     if (this.movementLock) {
       return false;
@@ -47,7 +33,15 @@ class Adventurer {
     return true;
   }
 
-  move(left, top) {
+  moveToEntrance() {
+    this.element.css({
+      left: config.leftOffset + config.tileSize * this.position.column,
+      top: config.topOffset + config.tileSize * this.position.row
+    });
+    map.changeFog(this.position.row, this.position.column);
+  }
+
+  move(left, top, callback) {
     if (!this.isMovementAllowed(left, top)) {
       return false;
     }
@@ -62,23 +56,24 @@ class Adventurer {
     const column = this.position.column + left;
 
     map.changeFog(row, column);
-    let animation = 'adventurer-move-right';
+    const animationName =
+      left >= 0 ? "adventurer-move-right" : "adventurer-move-left";
 
-    if (left < 0) {
-      animation = 'adventurer-move-left';
-    }
-
-    $("#adventurer").css({
-      "animation-name": animation,
+    this.element.css({
+      "animation-name": animationName,
       "animation-duration": "0.5s"
     });
-    $("#adventurer").animate(direction, 1000, () => {
+
+    this.element.animate(direction, 1000, () => {
       this.movementLock = false;
-      this.changeCoordinates(row, column);
-      $("#adventurer").css({
+      this.position = { row, column };
+      this.element.css({
         "animation-name": "adventurer",
         "animation-duration": "0.8s"
       });
+      if (callback) {
+        callback(row, column);
+      }
     });
   }
 }

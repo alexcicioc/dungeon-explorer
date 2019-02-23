@@ -1,14 +1,13 @@
-class Monster {
+class Monster extends Sprite {
   constructor(row, column, element) {
-    this.position = { row, column };
-    this.element = element;
+    super(row, column, element);
   }
 
   static createMonster(type, row, column) {
     this.position = { row, column };
-    const monsterDiv = $('<div></div>');
+    const monsterDiv = $("<div></div>");
     monsterDiv.addClass(type);
-    monsterDiv.addClass('sprite');
+    monsterDiv.addClass("sprite");
     return new Monster(row, column, monsterDiv);
   }
 }
