@@ -2,6 +2,8 @@ const api = "https://api.myjson.com/bins/ppady";
 
 let adventurer;
 let map;
+let spacePressed = false;
+let dialogSequence;
 
 const updateCoordinates = (row, column) => {
   $("#positionX").html(row + 1);
@@ -21,30 +23,57 @@ const initScenario = () => {
       );
       map.placeMonster(Monster.createMonster("bat", 3, 8));
       map.placeMonster(Monster.createMonster("bat", 1, 5));
-      map.placeMonster(Monster.createMonster("minotaur", 0, 6));
+      map.placeMonster(Monster.createMonster("minotaur", 2, 6));
+      dialogSequence = new DialogSequence(
+        response.start[0],
+        response.start[1],
+        ["Yeah, pretty sure I'm lost...", "I should find another exit"]
+      );
     }
   });
 };
 
 initScenario();
 
+const writeToLog = message => {
+  $("#gameLog")
+    .fadeOut()
+    .html(message)
+    .fadeIn();
+};
+
+const moveAdventurer = (left, top) => {
+  if (!dialogSequence.isDialogInProgress()) {
+    adventurer.move(left, top, updateCoordinates);
+  } else {
+    writeToLog("Place space bar to continue");
+  }
+};
+
 $(document).keydown(event => {
   switch (event.which) {
+    case 32:
+      // space
+      if (dialogSequence) {
+        dialogSequence.showNext();
+      }
+      spacePressed = true;
+      break;
     case 37:
       // left
-      adventurer.move(-1, 0, updateCoordinates);
+      moveAdventurer(-1, 0);
       break;
     case 39:
       // right
-      adventurer.move(1, 0, updateCoordinates);
+      moveAdventurer(1, 0);
       break;
     case 38:
       // up
-      adventurer.move(0, -1, updateCoordinates);
+      moveAdventurer(0, -1);
       break;
     case 40:
       // down
-      adventurer.move(0, 1, updateCoordinates);
+      moveAdventurer(0, 1);
       break;
     default:
     // exit this handler for other keys
