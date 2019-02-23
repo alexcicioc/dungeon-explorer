@@ -59,9 +59,27 @@
     }
 }
 
+@keyframes minotaur {
+    0% {
+        background: url('img/monsters/minotaur-1.png') no-repeat center;
+    }
+    25% {
+        background: url('img/monsters/minotaur-2.png') no-repeat center;
+    }
+    50% {
+        background: url('img/monsters/minotaur-3.png') no-repeat center;
+    }
+    75% {
+        background: url('img/monsters/minotaur-4.png') no-repeat center;
+    }
+    100% {
+        background: url('img/monsters/minotaur-5.png') no-repeat center;
+    }
+}
+
 .sprite {
-    width: 32px;
-    height: 32px;
+    width: 64px;
+    height: 64px;
 }
 
 #adventurer {
@@ -77,5 +95,10 @@
     animation-name: bat;
     animation-duration: 0.8s;
     animation-iteration-count: infinite;
-    animation-direction: alternate;
+}
+
+.minotaur {
+    animation-name: minotaur;
+    animation-duration: 0.8s;
+    animation-iteration-count: infinite;
 }

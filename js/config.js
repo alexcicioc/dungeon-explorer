@@ -1,5 +1,5 @@
 const config = {
-  tileSize: 32,
-  leftOffset: 18,
-  topOffset: 60
+  tileSize: 64,
+  leftOffset: 26,
+  topOffset: 104
 };

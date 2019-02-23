@@ -21,6 +21,7 @@ const initScenario = () => {
       );
       map.placeMonster(Monster.createMonster("bat", 3, 8));
       map.placeMonster(Monster.createMonster("bat", 1, 5));
+      map.placeMonster(Monster.createMonster("minotaur", 0, 6));
     }
   });
 };
