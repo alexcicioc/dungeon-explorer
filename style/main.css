@@ -1,11 +1,11 @@
 body {
     background: #2f2f2e;
     overflow: hidden;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 #header {
     color: white;
-    font-family: 'Courier New', Courier, monospace;
     font-size: 12px;
 }
 
@@ -24,6 +24,7 @@ body {
     padding: 10px;
     z-index: 99999;
     display: none;
+    max-width: 300px;
 }
 
 .speech-bubble:after {
