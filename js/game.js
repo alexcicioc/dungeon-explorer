@@ -1,5 +1,3 @@
-const api = "https://api.myjson.com/bins/11hl2u";
-
 let map;
 let dialogSequence;
 
@@ -11,7 +9,7 @@ const updateCoordinates = (row, column) => {
 const initScenario = () => {
   $.ajax({
     type: "GET",
-    url: api,
+    url: config.scenarioApiUrl,
     success(response) {
       map = new Map(response.mapSize, response.map);
       initSprites(response.sprites);
@@ -25,7 +23,8 @@ const initSprites = sprites => {
     const sprite = SpriteFactory.createSpriteByType(
       spriteInfo.type,
       spriteInfo.position,
-      spriteInfo.id
+      spriteInfo.id,
+      spriteInfo.baseStats
     );
     map.placeSprite(sprite);
   });

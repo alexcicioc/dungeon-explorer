@@ -1,8 +1,9 @@
 class Sprite {
-  constructor(row, column, element, type) {
+  constructor(row, column, element, type, baseStats) {
     this.position = { row, column };
     this.element = element;
     this.type = type;
+    this.baseStats = baseStats;
   }
 
   static get instance() {
@@ -23,29 +24,29 @@ class Sprite {
 }
 
 class Monster extends Sprite {
-  constructor(row, column, element, type) {
-    super(row, column, element, type);
+  constructor(row, column, element, type, baseStats) {
+    super(row, column, element, type, baseStats);
   }
 }
 
 class Vilain extends Monster {
-  constructor(row, column, element) {
-    super(row, column, element, "vilain");
+  constructor(row, column, element, baseStats) {
+    super(row, column, element, "vilain", baseStats);
     Vilain._instance = this;
   }
 }
 
 class SpriteFactory {
-  static createSpriteByType(type, position, elementId) {
+  static createSpriteByType(type, position, elementId, baseStats) {
     const [row, column] = position;
     const element = this.createElement(type, elementId);
     switch (type) {
       case constants.spriteTypes.HERO:
-        return new Adventurer(row, column, element);
+        return new Adventurer(row, column, element, baseStats);
       case constants.spriteTypes.VILAIN:
-        return new Vilain(row, column, element);
+        return new Vilain(row, column, element, baseStats);
       case constants.spriteTypes.BAT:
-        return new Monster(row, column, element);
+        return new Monster(row, column, element, baseStats);
     }
   }
 

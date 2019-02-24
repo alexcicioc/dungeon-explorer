@@ -1,6 +1,6 @@
 class Adventurer extends Sprite {
-  constructor(row, column, element) {
-    super(row, column, element, "hero");
+  constructor(row, column, element, baseStats) {
+    super(row, column, element, "hero", baseStats);
     this.movementLock = false;
     this.moveToEntrance();
     updateCoordinates(row, column);
