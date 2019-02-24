@@ -1,9 +1,18 @@
 class Adventurer extends Sprite {
   constructor(row, column, element) {
-    super(row, column, element);
+    super(row, column, element, "hero");
     this.movementLock = false;
     this.moveToEntrance();
     updateCoordinates(row, column);
+    Adventurer._instance = this;
+  }
+
+  static getInstance(row, column, element) {
+    if (Adventurer._instance) {
+      return Adventurer._instance;
+    }
+
+    return new Adventurer(row, column, element);
   }
 
   isMovementAllowed(left, top) {

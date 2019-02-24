@@ -23,6 +23,7 @@ body {
     border-radius: .4em;
     padding: 10px;
     z-index: 99999;
+    display: none;
 }
 
 .speech-bubble:after {

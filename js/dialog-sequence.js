@@ -1,24 +1,33 @@
 class DialogSequence {
-  constructor(row, column, messages) {
-    this.position = { row, column };
-    this.messages = messages;
+  constructor(dialogs) {
+    this.onStart = dialogs.onStart ? dialogs.onStart : [];
+    this.currentEvent = "onStart";
     this.showNext();
   }
 
   showNext() {
-    if (this.messages.length === 0) {
+    const currentDialogs = this[this.currentEvent];
+    if (currentDialogs.length === 0) {
       $(".speech-bubble").hide();
       return false;
     }
+    const currentDialog = currentDialogs[0];
+    let sprite;
+    if (currentDialog.speaker === constants.spriteTypes.HERO) {
+      sprite = Adventurer.getInstance();
+    } else {
+      sprite = Vilain.getInstance();
+    }
     $(".speech-bubble")
       .css({
-        left: config.leftOffset + config.tileSize * (this.position.column + 1),
-        top: config.topOffset + config.tileSize * this.position.row
+        left:
+          config.leftOffset + config.tileSize * (sprite.position.column + 1),
+        top: config.topOffset + config.tileSize * sprite.position.row
       })
-      .html(this.messages[0])
+      .html(currentDialog.message)
       .show();
 
-    this.messages.shift();
+    currentDialogs.shift();
   }
 
   isDialogInProgress() {

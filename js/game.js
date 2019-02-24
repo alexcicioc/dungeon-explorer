@@ -1,4 +1,4 @@
-const api = "https://api.myjson.com/bins/ppady";
+const api = "https://api.myjson.com/bins/umvwm";
 
 let adventurer;
 let map;
@@ -15,20 +15,20 @@ const initScenario = () => {
     url: api,
     success(response) {
       map = new Map(response.mapSize, response.map);
-      adventurer = new Adventurer(
-        response.start[0],
-        response.start[1],
-        $("#adventurer")
-      );
-      map.placeMonster(Monster.createMonster("bat", 3, 8));
-      map.placeMonster(Monster.createMonster("bat", 1, 5));
-      map.placeMonster(Monster.createMonster("minotaur", 2, 6));
-      dialogSequence = new DialogSequence(
-        response.start[0],
-        response.start[1],
-        ["Yeah, pretty sure I'm lost...", "I should find another exit"]
-      );
+      initSprites(response.sprites);
+      dialogSequence = new DialogSequence(response.dialogs);
     }
+  });
+};
+
+const initSprites = sprites => {
+  sprites.forEach(spriteInfo => {
+    const sprite = SpriteFactory.createSpriteByType(
+      spriteInfo.type,
+      spriteInfo.position,
+      spriteInfo.id
+    );
+    map.placeSprite(sprite);
   });
 };
 
@@ -43,7 +43,7 @@ const writeToLog = message => {
 
 const moveAdventurer = (left, top) => {
   if (!dialogSequence.isDialogInProgress()) {
-    adventurer.move(left, top, updateCoordinates);
+    Adventurer.getInstance().move(left, top, updateCoordinates);
   } else {
     writeToLog("Place space bar to continue");
   }
