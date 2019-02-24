@@ -1,11 +1,7 @@
 const config = {
   tileSize: 64,
   leftOffset: 26,
-  topOffset: 104,
-  spritesMap: {
-    hero: "adventurer",
-    vilain: "minotaur"
-  }
+  topOffset: 104
 };
 
 const constants = {

@@ -1,6 +1,5 @@
-const api = "https://api.myjson.com/bins/umvwm";
+const api = "https://api.myjson.com/bins/11hl2u";
 
-let adventurer;
 let map;
 let dialogSequence;
 

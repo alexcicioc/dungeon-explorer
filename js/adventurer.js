@@ -7,14 +7,6 @@ class Adventurer extends Sprite {
     Adventurer._instance = this;
   }
 
-  static getInstance(row, column, element) {
-    if (Adventurer._instance) {
-      return Adventurer._instance;
-    }
-
-    return new Adventurer(row, column, element);
-  }
-
   isMovementAllowed(left, top) {
     const [sizeX, sizeY] = map.size;
     const { column, row } = this.position;

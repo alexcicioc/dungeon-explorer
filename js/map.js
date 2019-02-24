@@ -37,6 +37,10 @@ class Map {
 
   placeSprite(sprite) {
     const { row, column } = sprite.position;
-    this.tiles[row][column].append(sprite.element);
+    if (sprite.type === constants.spriteTypes.HERO) {
+      $("body").append(sprite.element);
+    } else {
+      this.tiles[row][column].append(sprite.element);
+    }
   }
 }
