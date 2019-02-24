@@ -1,7 +1,7 @@
-const api = "https://api.myjson.com/bins/ppady";
+const api = "https://api.myjson.com/bins/11hl2u";
 
-let adventurer;
 let map;
+let dialogSequence;
 
 const updateCoordinates = (row, column) => {
   $("#positionX").html(row + 1);
@@ -14,37 +14,63 @@ const initScenario = () => {
     url: api,
     success(response) {
       map = new Map(response.mapSize, response.map);
-      adventurer = new Adventurer(
-        response.start[0],
-        response.start[1],
-        $("#adventurer")
-      );
-      map.placeMonster(Monster.createMonster("bat", 3, 8));
-      map.placeMonster(Monster.createMonster("bat", 1, 5));
-      map.placeMonster(Monster.createMonster("minotaur", 0, 6));
+      initSprites(response.sprites);
+      dialogSequence = new DialogSequence(response.dialogs);
     }
+  });
+};
+
+const initSprites = sprites => {
+  sprites.forEach(spriteInfo => {
+    const sprite = SpriteFactory.createSpriteByType(
+      spriteInfo.type,
+      spriteInfo.position,
+      spriteInfo.id
+    );
+    map.placeSprite(sprite);
   });
 };
 
 initScenario();
 
+const writeToLog = message => {
+  $("#gameLog")
+    .fadeOut()
+    .html(message)
+    .fadeIn();
+};
+
+const moveAdventurer = (left, top) => {
+  if (!dialogSequence.isDialogInProgress()) {
+    Adventurer.getInstance().move(left, top, updateCoordinates);
+  } else {
+    writeToLog("Place space bar to continue");
+  }
+};
+
 $(document).keydown(event => {
   switch (event.which) {
+    case 32:
+      // space
+      if (dialogSequence) {
+        dialogSequence.showNext();
+      }
+      break;
     case 37:
       // left
-      adventurer.move(-1, 0, updateCoordinates);
+      moveAdventurer(-1, 0);
       break;
     case 39:
       // right
-      adventurer.move(1, 0, updateCoordinates);
+      moveAdventurer(1, 0);
       break;
     case 38:
       // up
-      adventurer.move(0, -1, updateCoordinates);
+      moveAdventurer(0, -1);
       break;
     case 40:
       // down
-      adventurer.move(0, 1, updateCoordinates);
+      moveAdventurer(0, 1);
       break;
     default:
     // exit this handler for other keys

@@ -97,7 +97,7 @@
     animation-iteration-count: infinite;
 }
 
-.minotaur {
+#minotaur {
     animation-name: minotaur;
     animation-duration: 0.8s;
     animation-iteration-count: infinite;

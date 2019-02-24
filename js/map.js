@@ -35,8 +35,12 @@ class Map {
     });
   }
 
-  placeMonster(monster) {
-    const {row, column} = monster.position;
-    this.tiles[row][column].append(monster.element);
+  placeSprite(sprite) {
+    const { row, column } = sprite.position;
+    if (sprite.type === constants.spriteTypes.HERO) {
+      $("body").append(sprite.element);
+    } else {
+      this.tiles[row][column].append(sprite.element);
+    }
   }
 }
