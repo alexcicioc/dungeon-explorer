@@ -7,21 +7,7 @@ const updateCoordinates = (row, column) => {
   dialogSequence.startDialogIfAvailable(row, column);
 };
 
-const initScenario = () => {
-  $.ajax({
-    type: "GET",
-    url: config.scenarioApiUrl,
-    success(response) {
-      map = new Map(response.mapSize, response.map);
-      initSprites(response.sprites);
-      dialogSequence = new DialogSequence(response.dialogs);
-      const { row, column } = Adventurer.getInstance().position;
-      updateCoordinates(row, column);
-    }
-  });
-};
-
-const initSprites = sprites => {
+function createSprites(sprites) {
   sprites.forEach(spriteInfo => {
     const sprite = SpriteFactory.createSpriteByType(
       spriteInfo.type,
@@ -31,9 +17,44 @@ const initSprites = sprites => {
     );
     map.placeSprite(sprite);
   });
+}
+
+const initMap = () => {
+  $.ajax({
+    type: "GET",
+    url: config.api.map,
+    success(response) {
+      map = new Map(response.size, response.map);
+      initSprites();
+    }
+  });
 };
 
-initScenario();
+function initSprites() {
+  $.ajax({
+    type: "GET",
+    url: config.api.sprites,
+    success(response) {
+      createSprites(response);
+      initDialogs();
+    }
+  });
+}
+
+function initDialogs() {
+  $.ajax({
+    async: false,
+    type: "GET",
+    url: config.api.dialogs,
+    success(response) {
+      dialogSequence = new DialogSequence(response);
+      const { row, column } = Adventurer.getInstance().position;
+      updateCoordinates(row, column);
+    }
+  });
+}
+
+initMap();
 
 const writeToLog = message => {
   $("#gameLog")

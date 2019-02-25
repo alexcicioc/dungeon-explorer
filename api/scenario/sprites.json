@@ -1,0 +1,38 @@
+[
+  {
+    "position": [0, 5],
+    "baseStats": {
+      "strength": 8,
+      "vitality": 16
+    },
+    "type": "hero",
+    "id": "adventurer"
+  },
+  {
+    "position": [3, 8],
+    "baseStats": {
+      "strength": 4,
+      "vitality": 10
+    },
+    "type": "bat",
+    "id": "bat1"
+  },
+  {
+    "baseStats": {
+      "strength": 5,
+      "vitality": 12
+    },
+    "position": [1, 5],
+    "type": "bat",
+    "id": "bat2"
+  },
+  {
+    "position": [2, 6],
+    "baseStats": {
+      "strength": 10,
+      "vitality": 20
+    },
+    "type": "vilain",
+    "id": "minotaur"
+  }
+]

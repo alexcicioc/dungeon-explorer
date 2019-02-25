@@ -1,0 +1,42 @@
+[
+  {
+    "trigger": {
+      "row": 0,
+      "column": 5
+    },
+    "messages": [
+      {
+        "speaker": "hero",
+        "message": "Great, yet another dark room. I'm pretty sure I'm lost."
+      },
+      {
+        "speaker": "vilain",
+        "message": "*sniff* I smell fresh meat"
+      },
+      {
+        "speaker": "hero",
+        "message": "What... What was that ?"
+      },
+      {
+        "speaker": "hero",
+        "message": "I barely made it out alive after that bat swarm, I should find something to heal myself"
+      }
+    ]
+  },
+  {
+    "trigger": {
+      "row": 2,
+      "column": 6
+    },
+    "messages": [
+      {
+        "speaker": "hero",
+        "message": "Oh shit. I'm dead"
+      },
+      {
+        "speaker": "vilain",
+        "message": "DIE INSECT!!"
+      }
+    ]
+  }
+]

@@ -7,7 +7,6 @@ class Adventurer extends Sprite {
   }
 
   isMovementAllowed(left, top) {
-    const [sizeX, sizeY] = map.size;
     const { column, row } = this.position;
 
     if (this.movementLock) {
@@ -18,7 +17,7 @@ class Adventurer extends Sprite {
       return false;
     }
 
-    if (left > 0 && column + left >= sizeX) {
+    if (left > 0 && column + left >= map.size.columns) {
       return false;
     }
 
@@ -26,7 +25,7 @@ class Adventurer extends Sprite {
       return false;
     }
 
-    if (top > 0 && row + top >= sizeY) {
+    if (top > 0 && row + top >= map.size.rows) {
       return false;
     }
 
