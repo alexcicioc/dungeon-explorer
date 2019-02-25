@@ -1,9 +1,9 @@
 class Sprite {
-  constructor(row, column, element, type, baseStats) {
+  constructor(row, column, element, type, stats) {
     this.position = { row, column };
     this.element = element;
     this.type = type;
-    this.baseStats = baseStats;
+    this.stats = stats;
   }
 
   static get instance() {

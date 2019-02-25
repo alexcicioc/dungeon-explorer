@@ -91,6 +91,21 @@
     position: absolute;
 }
 
+#adventurer::after {
+    margin-top: -3px;
+    width: 40px;
+    height: 8px;
+    position: absolute;
+    content: '6/12';
+    margin-left:12px;
+    background: linear-gradient(90deg, rgba(255, 0, 43, 0.5) 50%, rgba(0, 255, 255, 0) 50%);
+    color: white;
+    font-size: 8px;
+    font-weight: bolder;
+    text-align: center;
+    border: 1px solid rgba(255, 108, 108, 0.5);
+}
+
 .bat {
     animation-name: bat;
     animation-duration: 0.8s;
