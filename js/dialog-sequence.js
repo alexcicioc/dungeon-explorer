@@ -1,19 +1,34 @@
 class DialogSequence {
   constructor(dialogs) {
-    this.onStart = dialogs.onStart ? dialogs.onStart : [];
-    this.currentEvent = "onStart";
-    this.showNext();
+    this.dialogs = dialogs;
+    this.currentDialog = null;
+  }
+
+  startDialogIfAvailable(heroRow, heroColumn) {
+    for (let key in this.dialogs) {
+      const { row, column } = this.dialogs[key].trigger;
+      if (
+        row === heroRow &&
+        column === heroColumn &&
+        !this.dialogs[key].processed
+      ) {
+        this.currentDialog = this.dialogs[key];
+        this.dialogs[key].processed = true;
+        this.showNext();
+        break;
+      }
+    }
   }
 
   showNext() {
-    const currentDialogs = this[this.currentEvent];
-    if (currentDialogs.length === 0) {
+    const messages = this.currentDialog.messages;
+    if (messages.length === 0) {
       $(".speech-bubble").hide();
       return false;
     }
-    const currentDialog = currentDialogs[0];
+    const currentMessage = messages[0];
     let sprite;
-    if (currentDialog.speaker === constants.spriteTypes.HERO) {
+    if (currentMessage.speaker === constants.spriteTypes.HERO) {
       sprite = Adventurer.getInstance();
     } else {
       sprite = Vilain.getInstance();
@@ -24,10 +39,10 @@ class DialogSequence {
           config.leftOffset + config.tileSize * (sprite.position.column + 1),
         top: config.topOffset + config.tileSize * sprite.position.row
       })
-      .html(currentDialog.message)
+      .html(currentMessage.message)
       .show();
 
-    currentDialogs.shift();
+    messages.shift();
   }
 
   isDialogInProgress() {

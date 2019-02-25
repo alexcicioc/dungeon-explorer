@@ -3,7 +3,6 @@ class Adventurer extends Sprite {
     super(row, column, element, "hero", baseStats);
     this.movementLock = false;
     this.moveToEntrance();
-    updateCoordinates(row, column);
     Adventurer._instance = this;
   }
 

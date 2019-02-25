@@ -4,6 +4,7 @@ let dialogSequence;
 const updateCoordinates = (row, column) => {
   $("#positionX").html(row + 1);
   $("#positionY").html(column + 1);
+  dialogSequence.startDialogIfAvailable(row, column);
 };
 
 const initScenario = () => {
@@ -14,6 +15,8 @@ const initScenario = () => {
       map = new Map(response.mapSize, response.map);
       initSprites(response.sprites);
       dialogSequence = new DialogSequence(response.dialogs);
+      const { row, column } = Adventurer.getInstance().position;
+      updateCoordinates(row, column);
     }
   });
 };
@@ -41,7 +44,8 @@ const writeToLog = message => {
 
 const moveAdventurer = (left, top) => {
   if (!dialogSequence.isDialogInProgress()) {
-    Adventurer.getInstance().move(left, top, updateCoordinates);
+    const adventurer = Adventurer.getInstance();
+    adventurer.move(left, top, updateCoordinates);
   } else {
     writeToLog("Place space bar to continue");
   }
