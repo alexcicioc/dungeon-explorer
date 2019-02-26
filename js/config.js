@@ -13,6 +13,7 @@ const constants = {
   spriteTypes: {
     HERO: "hero",
     VILAIN: "vilain",
-    BAT: "bat"
+    BAT: "bat",
+    HEALTH_POTION: "health-potion"
   }
 };

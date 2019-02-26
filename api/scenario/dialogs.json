@@ -38,5 +38,21 @@
         "message": "DIE INSECT!!"
       }
     ]
+  },
+  {
+    "trigger": {
+      "row": 1,
+      "column": 1
+    },
+    "messages": [
+      {
+        "speaker": "hero",
+        "message": "Well, I played enough video games to know this is a health potion"
+      },
+      {
+        "speaker": "hero",
+        "message": "Bottoms up !"
+      }
+    ]
   }
 ]

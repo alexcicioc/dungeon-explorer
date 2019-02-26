@@ -5,6 +5,7 @@ const updateCoordinates = (row, column) => {
   $("#positionX").html(row + 1);
   $("#positionY").html(column + 1);
   dialogSequence.startDialogIfAvailable(row, column);
+  map.checkTileTriggers(row, column);
 };
 
 function createSprites(sprites) {

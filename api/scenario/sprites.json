@@ -3,7 +3,8 @@
     "position": [0, 5],
     "baseStats": {
       "strength": 8,
-      "vitality": 16
+      "vitality": 16,
+      "healingPoints": 8
     },
     "type": "hero",
     "id": "adventurer"
@@ -20,7 +21,8 @@
   {
     "baseStats": {
       "strength": 5,
-      "vitality": 12
+      "vitality": 12,
+      "healingPoints": 12
     },
     "position": [1, 5],
     "type": "bat",
@@ -30,9 +32,20 @@
     "position": [2, 6],
     "baseStats": {
       "strength": 10,
-      "vitality": 20
+      "vitality": 20,
+      "healingPoints": 20
     },
     "type": "vilain",
     "id": "minotaur"
+  },
+  {
+    "position": [1, 1],
+    "baseStats": {
+      "strength": 0,
+      "vitality": 0,
+      "healingPoints": 8
+    },
+    "type": "health-potion",
+    "id": "healthPotion1"
   }
 ]

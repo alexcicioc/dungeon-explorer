@@ -3,6 +3,7 @@ class Adventurer extends Sprite {
     super(row, column, element, "hero", baseStats);
     this.movementLock = false;
     this.moveToEntrance();
+    this.updateHp();
     Adventurer._instance = this;
   }
 
@@ -74,5 +75,25 @@ class Adventurer extends Sprite {
         callback(row, column);
       }
     });
+  }
+
+  consume(sprite) {
+    for (let property in sprite.stats) {
+      this.stats[property] += sprite.stats[property];
+    }
+
+    this.updateHp();
+  }
+
+  updateHp() {
+    let hpBar = $('#adventurerHealthBar');
+    if (hpBar.length === 0) { 
+      hpBar = $("<div></div>").attr('id', 'adventurerHealthBar');
+      this.element.append(hpBar);
+    }
+    const percentage = parseInt(this.stats.healingPoints) * 100 / parseInt(this.stats.vitality);
+    hpBar.css({
+      background: `linear-gradient(90deg, rgba(255, 0, 43, 0.5) ${percentage}%, rgba(0, 255, 255, 0) ${100 - percentage}%)`
+    }).html(`${this.stats.healingPoints}/${this.stats.vitality}`);
   }
 }

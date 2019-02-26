@@ -7,19 +7,19 @@ class Sprite {
   }
 
   static get instance() {
-    return this.hasOwnProperty("_instance") ? this._instance : void 0;
+    return this.hasOwnProperty("_instance") ? this._instance : null;
   }
 
   static set instance(value) {
     this._instance = value;
   }
 
-  static getInstance(row, column, elementId) {
+  static getInstance() {
     if (this._instance) {
       return this._instance;
     }
 
-    return new this(row, column, elementId);
+    throw new Error('No instance found');
   }
 }
 
@@ -47,6 +47,9 @@ class SpriteFactory {
         return new Vilain(row, column, element, baseStats);
       case constants.spriteTypes.BAT:
         return new Monster(row, column, element, baseStats);
+      default:
+        return new Sprite(row, column, element, type, baseStats);
+
     }
   }
 

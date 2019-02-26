@@ -3,6 +3,7 @@ class Map {
     this.size = size;
     this.content = content;
     this.tiles = [];
+    this.sprites = [];
     this.buildMap();
   }
 
@@ -42,5 +43,15 @@ class Map {
     } else {
       this.tiles[row][column].append(sprite.element);
     }
+    this.sprites[sprite.element.attr('id')] = sprite;
+  }
+
+  checkTileTriggers(row, column) {
+    this.tiles[row][column].find('.sprite').each((index, element) => {
+      const sprite = $(element);
+      if (sprite.hasClass(constants.spriteTypes.HEALTH_POTION)) {
+        Adventurer.getInstance().consume(this.sprites[sprite.attr('id')]);
+      }
+    })
   }
 }
