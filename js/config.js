@@ -14,6 +14,8 @@ const constants = {
     HERO: "hero",
     VILAIN: "vilain",
     BAT: "bat",
-    HEALTH_POTION: "health-potion"
+    HEALTH_POTION: "health-potion",
+    CHEST_CLOSED: "chest-closed",
+    CHEST_OPEN: "chest-open"
   }
 };

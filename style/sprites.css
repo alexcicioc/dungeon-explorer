@@ -114,6 +114,14 @@
     background: url('img/items/health-potion.png') no-repeat center;
 }
 
+.chest-closed {
+    background: url('img/items/chest-closed.png') no-repeat bottom center;
+}
+
+.chest-open {
+    background: url('img/items/chest-open.png') no-repeat bottom center;
+}
+
 #minotaur {
     animation-name: minotaur;
     animation-duration: 0.8s;

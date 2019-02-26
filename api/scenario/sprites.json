@@ -47,5 +47,15 @@
     },
     "type": "health-potion",
     "id": "healthPotion1"
+  },
+  {
+    "position": [4, 6],
+    "baseStats": {
+      "strength": 12,
+      "vitality": 4,
+      "healingPoints": 4
+    },
+    "type": "chest-closed",
+    "id": "chest1"
   }
 ]

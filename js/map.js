@@ -51,6 +51,10 @@ class Map {
       const sprite = $(element);
       if (sprite.hasClass(constants.spriteTypes.HEALTH_POTION)) {
         Adventurer.getInstance().consume(this.sprites[sprite.attr('id')]);
+      } else if (sprite.hasClass(constants.spriteTypes.CHEST_CLOSED)) {
+        Adventurer.getInstance().consume(this.sprites[sprite.attr('id')]);
+        this.sprites[sprite.attr('id')].type = 'chest-open';
+        sprite.removeClass('chest-closed').addClass('chest-open');
       }
     })
   }

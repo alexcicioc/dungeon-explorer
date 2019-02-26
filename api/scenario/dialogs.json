@@ -54,5 +54,21 @@
         "message": "Bottoms up !"
       }
     ]
+  },
+  {
+    "trigger": {
+      "row": 4,
+      "column": 6
+    },
+    "messages": [
+      {
+        "speaker": "hero",
+        "message": "Cool ! I found something, let's see if I can open this old thing."
+      },
+      {
+        "speaker": "hero",
+        "message": "This should help me with whatever's out there."
+      }
+    ]
   }
 ]
