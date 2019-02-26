@@ -10,7 +10,7 @@
     "id": "adventurer"
   },
   {
-    "position": [3, 8],
+    "position": [3, 7],
     "baseStats": {
       "strength": 4,
       "vitality": 10
@@ -29,7 +29,7 @@
     "id": "bat2"
   },
   {
-    "position": [2, 6],
+    "position": [3, 10],
     "baseStats": {
       "strength": 10,
       "vitality": 20,

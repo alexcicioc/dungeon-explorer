@@ -25,9 +25,35 @@
       "tile3",
       "tile2",
       "tile3",
-      "tile-ladder",
+      "tile4",
       "tile2",
       "tile2",
+      "tile5"
+    ],
+    [
+      "tile4",
+      "tile5",
+      "tile3",
+      "tile2",
+      "tile5",
+      "tile1",
+      "tile5",
+      "tile1",
+      "tile2",
+      "tile-disabled",
+      "tile-disabled"
+    ],
+    [
+      "tile4",
+      "tile5",
+      "tile3",
+      "tile2",
+      "tile5",
+      "tile1",
+      "tile5",
+      "tile1",
+      "tile2",
+      "tile5",
       "tile-ladder"
     ],
     [
@@ -40,34 +66,8 @@
       "tile5",
       "tile1",
       "tile2",
-      "tile5",
-      "tile1"
-    ],
-    [
-      "tile4",
-      "tile5",
-      "tile3",
-      "tile2",
-      "tile5",
-      "tile1",
-      "tile5",
-      "tile1",
-      "tile2",
-      "tile5",
-      "tile1"
-    ],
-    [
-      "tile4",
-      "tile5",
-      "tile3",
-      "tile2",
-      "tile5",
-      "tile1",
-      "tile5",
-      "tile1",
-      "tile2",
-      "tile5",
-      "tile1"
+      "tile-disabled",
+      "tile-disabled"
     ],
     [
       "tile4",

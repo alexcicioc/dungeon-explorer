@@ -47,6 +47,11 @@
   background: url('img/tiles/ladder.png') no-repeat;
 }
 
+.tile-disabled {
+  background: url('img/walls/column-double.png') no-repeat, url('img/tiles/5.png');
+  box-shadow:inset 0px 0px 0px 1px rgb(82, 82, 82);
+}
+
 .entrance {
   width: 104px;
   height: 82px;

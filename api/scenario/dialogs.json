@@ -25,17 +25,21 @@
   },
   {
     "trigger": {
-      "row": 2,
-      "column": 6
+      "row": 3,
+      "column": 8
     },
     "messages": [
       {
         "speaker": "hero",
-        "message": "Oh shit. I'm dead"
+        "message": "Looks like there's only one way out"
+      },
+      {
+        "speaker": "hero",
+        "message": "I'm going to have to face that thing"
       },
       {
         "speaker": "vilain",
-        "message": "DIE INSECT!!"
+        "message": "It's been a while since my axe tasted blood."
       }
     ]
   },
