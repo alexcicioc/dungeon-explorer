@@ -5,12 +5,13 @@ body {
 }
 
 #header {
-    color: white;
+    color: rgb(41, 206, 0);
     font-size: 12px;
 }
 
 #header span {
     font-weight: bold;
+    color: rgb(255, 255, 255);
 }
 
 #gameLog {

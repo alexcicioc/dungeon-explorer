@@ -1,11 +1,16 @@
 let map;
 let dialogSequence;
 
-const updateCoordinates = (row, column) => {
+const updateCoordinates = () => {
+  const adventurer = Adventurer.getInstance();
+  const {row, column} = adventurer.position;
+  const {strength, vitality, healingPoints} = adventurer.stats;
+  dialogSequence.startDialogIfAvailable(row, column);
+  GameMechanics.checkTileTriggers(row, column);
   $("#positionX").html(row + 1);
   $("#positionY").html(column + 1);
-  dialogSequence.startDialogIfAvailable(row, column);
-  map.checkTileTriggers(row, column);
+  $("#strength").html(strength);
+  $("#vitality").html(`${healingPoints}/${vitality}`);
 };
 
 function createSprites(sprites) {
@@ -49,8 +54,7 @@ function initDialogs() {
     url: config.api.dialogs,
     success(response) {
       dialogSequence = new DialogSequence(response);
-      const { row, column } = Adventurer.getInstance().position;
-      updateCoordinates(row, column);
+      updateCoordinates();
     }
   });
 }

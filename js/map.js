@@ -36,28 +36,22 @@ class Map {
     });
   }
 
+  placeAdventurer(adventurer) {
+    $("body").append(adventurer.element);
+    adventurer.element.css({
+      left: config.leftOffset + config.tileSize * adventurer.position.column,
+      top: config.topOffset + config.tileSize * adventurer.position.row
+    });
+    map.changeFog(adventurer.position.row, adventurer.position.column);
+  }
+
   placeSprite(sprite) {
     const { row, column } = sprite.position;
-    if (sprite.type === constants.spriteTypes.HERO) {
-      $("body").append(sprite.element);
+    if (sprite instanceof Adventurer) {
+      this.placeAdventurer(sprite)
     } else {
       this.tiles[row][column].append(sprite.element);
     }
     this.sprites[sprite.element.attr('id')] = sprite;
-  }
-
-  checkTileTriggers(row, column) {
-    this.tiles[row][column].find('.sprite').each((index, element) => {
-      const sprite = $(element);
-      if (sprite.hasClass(constants.spriteTypes.HEALTH_POTION)) {
-        Adventurer.getInstance().consume(this.sprites[sprite.attr('id')]);
-        sprite.remove();
-        delete this.sprites[sprite.attr('id')];
-      } else if (sprite.hasClass(constants.spriteTypes.CHEST_CLOSED)) {
-        Adventurer.getInstance().consume(this.sprites[sprite.attr('id')]);
-        this.sprites[sprite.attr('id')].type = 'chest-open';
-        sprite.removeClass('chest-closed').addClass('chest-open');
-      }
-    })
   }
 }
