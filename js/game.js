@@ -1,11 +1,16 @@
 let map;
 let dialogSequence;
 
-const updateCoordinates = (row, column) => {
+const updateCoordinates = () => {
+  const adventurer = Adventurer.getInstance();
+  const {row, column} = adventurer.position;
+  const {strength, vitality, healingPoints} = adventurer.stats;
+  dialogSequence.startDialogIfAvailable(row, column);
+  GameMechanics.checkTileTriggers(row, column);
   $("#positionX").html(row + 1);
   $("#positionY").html(column + 1);
-  dialogSequence.startDialogIfAvailable(row, column);
-  map.checkTileTriggers(row, column);
+  $("#strength").html(strength);
+  $("#vitality").html(`${healingPoints}/${vitality}`);
 };
 
 function createSprites(sprites) {
@@ -49,8 +54,7 @@ function initDialogs() {
     url: config.api.dialogs,
     success(response) {
       dialogSequence = new DialogSequence(response);
-      const { row, column } = Adventurer.getInstance().position;
-      updateCoordinates(row, column);
+      updateCoordinates();
     }
   });
 }
@@ -66,16 +70,14 @@ const writeToLog = message => {
 
 const moveAdventurer = (left, top) => {
   const adventurer = Adventurer.getInstance();
-  let nextTile = false;
-  if (map.tiles[adventurer.position.row + top]) {
-    nextTile = map.tiles[adventurer.position.row + top][adventurer.position.column + left];
-  }
+  const nextTile = map.getTile(adventurer.position.row + top, adventurer.position.column + left);
+  
   if (!nextTile || nextTile.hasClass('tile-disabled')) {
     writeToLog("Can't go there");
   } else if (!dialogSequence.isDialogInProgress()) {
     adventurer.move(left, top, updateCoordinates);
   } else {
-    writeToLog("Place space bar to continue");
+    writeToLog("Press space bar to continue");
   }
 };
 

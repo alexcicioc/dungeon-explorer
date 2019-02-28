@@ -13,7 +13,8 @@
     "position": [3, 7],
     "baseStats": {
       "strength": 4,
-      "vitality": 10
+      "vitality": 10,
+      "healingPoints": 10
     },
     "type": "bat",
     "id": "bat1"
