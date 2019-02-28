@@ -47,7 +47,7 @@ class GameMechanics {
       log += `${defenderName} took ${attacker.stats.strength} damage;`;
 
       if (defender.stats.healingPoints <= 0) {
-        let damage = Math.floor(attacker.stats.strength / 2);
+        let damage = Math.floor(defender.stats.strength / 2);
         defender.stats.healingPoints = 0;
         attacker.stats.healingPoints -= damage;
         log += `${defenderName} died; ${attackerName} took ${damage} damage;`;
@@ -58,7 +58,7 @@ class GameMechanics {
 
         break;
       } else if (attacker.stats.healingPoints <= 0) {
-        let damage = Math.floor(defender.stats.strength / 2);
+        let damage = Math.floor(attacker.stats.strength / 2);
         attacker.stats.healingPoints = 0;
         defender.stats.healingPoints -= damage;
         log += `${attackerName} died; ${defenderName} took ${damage} damage;`;
