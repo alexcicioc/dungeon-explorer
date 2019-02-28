@@ -24,6 +24,10 @@ class Sprite {
 
     throw new Error('No instance found');
   }
+
+  getId() {
+    return this.element.attr('id');
+  }
 }
 
 /**

@@ -70,16 +70,14 @@ const writeToLog = message => {
 
 const moveAdventurer = (left, top) => {
   const adventurer = Adventurer.getInstance();
-  let nextTile = false;
-  if (map.tiles[adventurer.position.row + top]) {
-    nextTile = map.tiles[adventurer.position.row + top][adventurer.position.column + left];
-  }
+  const nextTile = map.getTile(adventurer.position.row + top, adventurer.position.column + left);
+  
   if (!nextTile || nextTile.hasClass('tile-disabled')) {
     writeToLog("Can't go there");
   } else if (!dialogSequence.isDialogInProgress()) {
     adventurer.move(left, top, updateCoordinates);
   } else {
-    writeToLog("Place space bar to continue");
+    writeToLog("Press space bar to continue");
   }
 };
 

@@ -1,37 +1,35 @@
 class GameMechanics {
 
   static checkTileTriggers(row, column) {
-    const tile = map.tiles[row][column];
-    const spriteElement = $(tile.find('.sprite')[0]);
-    const spriteInstance = map.sprites[spriteElement.attr('id')];
+    const sprite = map.getSprite(row, column);
     const adventurer = Adventurer.getInstance();
 
-    if (spriteElement) {
-      if (spriteElement.hasClass(constants.spriteTypes.HEALTH_POTION)) {
-        this.consumeItem(adventurer, spriteInstance);
-      } else if (spriteElement.hasClass(constants.spriteTypes.CHEST_CLOSED)) {
-        this.openChest(adventurer, spriteInstance);
-      } else if (this.isAttackable(spriteElement)) {
-        this.attack(adventurer, spriteInstance);
+    if (sprite) {
+      if (sprite.type === constants.spriteTypes.HEALTH_POTION) {
+        this.consumeItem(adventurer, sprite);
+      } else if (sprite.type === constants.spriteTypes.CHEST_CLOSED) {
+        this.openChest(adventurer, sprite);
+      } else if (this.isAttackable(sprite)) {
+        this.attack(adventurer, sprite);
       }
     }
   }
 
-  static consumeItem(adventurer, spriteInstance) {
-    adventurer.consume(spriteInstance);
-    map.removeSprite(spriteInstance);
+  static consumeItem(adventurer, sprite) {
+    adventurer.consume(sprite);
+    map.removeSprite(sprite);
   }
 
-  static openChest(adventurer, spriteInstance) {
-    adventurer.consume(spriteInstance);
-    spriteInstance.type = 'chest-open';
-    spriteInstance.element.removeClass('chest-closed').addClass('chest-open');
+  static openChest(adventurer, sprite) {
+    adventurer.consume(sprite);
+    sprite.type = 'chest-open';
+    sprite.element.removeClass('chest-closed').addClass('chest-open');
   }
 
-  static isAttackable(spriteElement) {
+  static isAttackable(sprite) {
     if (
-      spriteElement.hasClass(constants.spriteTypes.BAT) ||
-      spriteElement.hasClass(constants.spriteTypes.VILAIN)
+      sprite.type === constants.spriteTypes.BAT ||
+      sprite.type === constants.spriteTypes.VILAIN
     ) {
       return true;
     }
@@ -41,8 +39,8 @@ class GameMechanics {
 
   static attack(attacker, defender) {
     let log = '';
-    const attackerName = attacker.element.attr('id').toUpperCase();
-    const defenderName = defender.element.attr('id').toUpperCase();
+    const attackerName = attacker.getId().toUpperCase();
+    const defenderName = defender.getId().toUpperCase();
 
     do {
       defender.stats.healingPoints -= attacker.stats.strength;

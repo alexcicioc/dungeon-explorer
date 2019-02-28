@@ -59,4 +59,14 @@ class Map {
     delete this.sprites[sprite.element.attr('id')];
     sprite.element.remove();
   }
+
+  getTile(row, column) {
+    return this.tiles[row] ? this.tiles[row][column] : false;
+  }
+
+  getSprite(row, column) {
+    const tile = this.getTile(row, column);
+    const spriteElement = $(tile.find('.sprite')[0]);
+    return map.sprites[spriteElement.attr('id')];
+  }
 }
