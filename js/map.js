@@ -54,4 +54,9 @@ class Map {
     }
     this.sprites[sprite.element.attr('id')] = sprite;
   }
+
+  removeSprite(sprite) {
+    delete this.sprites[sprite.element.attr('id')];
+    sprite.element.remove();
+  }
 }

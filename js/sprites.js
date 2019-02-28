@@ -46,6 +46,10 @@ class Character extends Sprite {
       background: `linear-gradient(90deg, rgba(255, 0, 43, 0.5) ${percentage}%, rgba(0, 255, 255, 0) ${100 - percentage}%)`
     }).html(`${this.stats.healingPoints}/${this.stats.vitality}`);
   }
+
+  isDead() {
+    return this.stats.healingPoints <= 0;
+  }
 }
 
 class Monster extends Character {
