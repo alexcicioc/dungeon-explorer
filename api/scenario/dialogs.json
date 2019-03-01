@@ -74,5 +74,21 @@
         "message": "This should help me with whatever's out there."
       }
     ]
+  },
+  {
+    "trigger": {
+      "row": 3,
+      "column": 10
+    },
+    "messages": [
+      {
+        "speaker": "hero",
+        "message": "Take that Mr. Burgers."
+      },
+      {
+        "speaker": "hero",
+        "message": "Ba dum tssss."
+      }
+    ]
   }
 ]
