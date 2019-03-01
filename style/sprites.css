@@ -7,6 +7,15 @@
     }
 }
 
+@keyframes adventurer-sword {
+    from {
+        background: url('img/adventurer/standby-left-sword.png') no-repeat center;
+    }
+    to {
+        background: url('img/adventurer/standby-right-sword.png') no-repeat center;
+    }
+}
+
 @keyframes adventurer-move-right {
     0% {
         background: url('img/adventurer/movement/right-1.png') no-repeat center;

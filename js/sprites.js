@@ -74,6 +74,15 @@ class Adventurer extends Character {
     super(row, column, element, "hero", stats);
     this.movementLock = false;
     Adventurer._instance = this;
+    this.standByAnimation = 'adventurer';
+  }
+
+  changeStandByAnimation(animation) {
+    this.standByAnimation = animation;
+    this.element.css({
+      "animation-name": this.standByAnimation,
+      "animation-duration": "0.8s"
+    });
   }
 
   moveToEntrance() {
@@ -111,7 +120,7 @@ class Adventurer extends Character {
       this.movementLock = false;
       this.position = { row, column };
       this.element.css({
-        "animation-name": "adventurer",
+        "animation-name": this.standByAnimation,
         "animation-duration": "0.8s"
       });
       if (callback) {

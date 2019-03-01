@@ -22,6 +22,7 @@ class GameMechanics {
 
   static openChest(adventurer, sprite) {
     adventurer.consume(sprite);
+    adventurer.changeStandByAnimation('adventurer-sword');
     sprite.type = 'chest-open';
     sprite.element.removeClass('chest-closed').addClass('chest-open');
   }
