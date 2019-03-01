@@ -3,8 +3,8 @@ let dialogSequence;
 
 const updateCoordinates = () => {
   const adventurer = Adventurer.getInstance();
-  const {row, column} = adventurer.position;
-  const {strength, vitality, healingPoints} = adventurer.stats;
+  const { row, column } = adventurer.position;
+  const { strength, vitality, healingPoints } = adventurer.stats;
   dialogSequence.startDialogIfAvailable(row, column);
   GameMechanics.checkTileTriggers(row, column);
   $("#positionX").html(row + 1);
@@ -71,7 +71,7 @@ const writeToLog = message => {
 const moveAdventurer = (left, top) => {
   const adventurer = Adventurer.getInstance();
   const nextTile = map.getTile(adventurer.position.row + top, adventurer.position.column + left);
-  
+
   if (!nextTile || nextTile.hasClass('tile-disabled')) {
     writeToLog("Can't go there");
   } else if (!dialogSequence.isDialogInProgress()) {

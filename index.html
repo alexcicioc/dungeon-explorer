@@ -1,39 +1,67 @@
 <html>
-  <head>
-    <title>Dungeon Explorer</title>
-    <link rel="stylesheet" type="text/css" href="style/main.css" />
-    <link rel="stylesheet" type="text/css" href="style/map.css" />
-    <link rel="stylesheet" type="text/css" href="style/sprites.css" />
-  </head>
 
-  <body>
-    <div id="header">
-      Row: <span id="positionX"></span> Column: <span id="positionY"></span>;
-      Strength: <span id="strength"></span> Vitality: <span id="vitality"></span>;
+<head>
+  <title>Dungeon Explorer</title>
+  <link rel="stylesheet" type="text/css" href="style/main.css" />
+  <link rel="stylesheet" type="text/css" href="style/map.css" />
+  <link rel="stylesheet" type="text/css" href="style/sprites.css" />
+  <script type="text/javascript">
+    function preload() {
+      const images = [];
 
-      <span id="gameLog"></span>
-      <br />
-      Use the arrow keys to move; Press space to continue with the dialog
-    </div>
-    <div class="speech-bubble"></div>
-    <div id="map">
-      <div class="map-header">
-        <div class="wall-top">
-          <div class="entrance"></div>
-        </div>
+      for (let i = 0; i < arguments.length; i++) {
+        images[i] = new Image();
+        images[i].src = preload.arguments[i];
+      }
+    }
+
+    // Preload animations
+    preload(
+      "style/img/adventurer/standby-left.png",
+      "style/img/adventurer/standby-right.png",
+      "style/img/adventurer/standby-left-sword.png",
+      "style/img/adventurer/standby-right-sword.png",
+      "style/img/adventurer/movement/right-1.png",
+      "style/img/adventurer/movement/right-2.png",
+      "style/img/adventurer/movement/right-3.png",
+      "style/img/adventurer/movement/right-4.png",
+      "style/img/adventurer/movement/left-1.png",
+      "style/img/adventurer/movement/left-2.png",
+      "style/img/adventurer/movement/left-3.png",
+      "style/img/adventurer/movement/left-4.png",
+    )
+  </script>
+</head>
+
+<body>
+  <div id="header">
+    Row: <span id="positionX"></span> Column: <span id="positionY"></span>;
+    Strength: <span id="strength"></span> Vitality: <span id="vitality"></span>;
+
+    <span id="gameLog"></span>
+    <br />
+    Use the arrow keys to move; Press space to continue with the dialog
+  </div>
+  <div class="speech-bubble"></div>
+  <div id="map">
+    <div class="map-header">
+      <div class="wall-top">
+        <div class="entrance"></div>
       </div>
-      <div class="map-content"></div>
-      <div class="map-footer">
-        <div class="wall-bottom"></div>
-      </div>
     </div>
+    <div class="map-content"></div>
+    <div class="map-footer">
+      <div class="wall-bottom"></div>
+    </div>
+  </div>
 
-    <script src="js/jquery.min.js"></script>
-    <script src="js/config.js"></script>
-    <script src="js/sprites.js"></script>
-    <script src="js/map.js"></script>
-    <script src="js/dialog-sequence.js"></script>
-    <script src="js/game-mechanics.js"></script>
-    <script src="js/game.js"></script>
-  </body>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/sprites.js"></script>
+  <script src="js/map.js"></script>
+  <script src="js/dialog-sequence.js"></script>
+  <script src="js/game-mechanics.js"></script>
+  <script src="js/game.js"></script>
+</body>
+
 </html>
