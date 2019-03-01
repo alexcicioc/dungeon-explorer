@@ -48,15 +48,15 @@ class Map {
   placeSprite(sprite) {
     const { row, column } = sprite.position;
     if (sprite instanceof Adventurer) {
-      this.placeAdventurer(sprite)
+      this.placeAdventurer(sprite);
     } else {
       this.tiles[row][column].append(sprite.element);
     }
-    this.sprites[sprite.element.attr('id')] = sprite;
+    this.sprites[sprite.getId()] = sprite;
   }
 
   removeSprite(sprite) {
-    delete this.sprites[sprite.element.attr('id')];
+    delete this.sprites[sprite.element.attr("id")];
     sprite.element.remove();
   }
 
@@ -66,7 +66,7 @@ class Map {
 
   getSprite(row, column) {
     const tile = this.getTile(row, column);
-    const spriteElement = $(tile.find('.sprite')[0]);
-    return map.sprites[spriteElement.attr('id')];
+    const spriteElement = $(tile.find(".sprite")[0]);
+    return map.sprites[spriteElement.attr("id")];
   }
 }

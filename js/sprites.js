@@ -2,11 +2,12 @@
  * Could be basically anything floating over a map tile
  */
 class Sprite {
-  constructor(row, column, element, type, stats) {
-    this.position = { row, column };
+  constructor(position, element, type, stats, encounterMessage) {
+    this.position = { row: position[0], column: position[1] };
     this.element = element;
     this.type = type;
     this.stats = stats;
+    this.encounterMessage = encounterMessage;
   }
 
   static get instance() {
@@ -22,11 +23,11 @@ class Sprite {
       return this._instance;
     }
 
-    throw new Error('No instance found');
+    throw new Error("No instance found");
   }
 
   getId() {
-    return this.element.attr('id');
+    return this.element.attr("id");
   }
 }
 
@@ -34,21 +35,24 @@ class Sprite {
  * Character is a "fightable entity"
  */
 class Character extends Sprite {
-  constructor(row, column, element, type, stats) {
-    super(row, column, element, type, stats);
+  constructor(position, element, type, stats, encounterMessage) {
+    super(position, element, type, stats, encounterMessage);
     this.updateHp();
   }
 
   updateHp() {
-    let hpBar = $(this.element.find('.hp-bar'));
-    if (hpBar.length === 0) { 
-      hpBar = $("<div></div>").addClass('hp-bar');
+    let hpBar = $(this.element.find(".hp-bar"));
+    if (hpBar.length === 0) {
+      hpBar = $("<div></div>").addClass("hp-bar");
       this.element.append(hpBar);
     }
-    const percentage = this.stats.healingPoints * 100 / this.stats.vitality;
-    hpBar.css({
-      background: `linear-gradient(90deg, rgba(255, 0, 43, 0.5) ${percentage}%, rgba(0, 255, 255, 0) ${100 - percentage}%)`
-    }).html(`${this.stats.healingPoints}/${this.stats.vitality}`);
+    const percentage = (this.stats.healingPoints * 100) / this.stats.vitality;
+    hpBar
+      .css({
+        background: `linear-gradient(90deg, rgba(255, 0, 43, 0.5) ${percentage}%, rgba(0, 255, 255, 0) ${100 -
+          percentage}%)`
+      })
+      .html(`${this.stats.healingPoints}/${this.stats.vitality}`);
   }
 
   isDead() {
@@ -56,25 +60,21 @@ class Character extends Sprite {
   }
 }
 
-class Monster extends Character {
-  constructor(row, column, element, type, stats) {
-    super(row, column, element, type, stats);
-  }
-}
+class Monster extends Character {}
 
 class Vilain extends Character {
-  constructor(row, column, element, stats) {
-    super(row, column, element, "vilain", stats);
+  constructor(position, element, stats, encounterMessage) {
+    super(position, element, "vilain", stats, encounterMessage);
     Vilain._instance = this;
   }
 }
 
 class Adventurer extends Character {
-  constructor(row, column, element, stats) {
-    super(row, column, element, "hero", stats);
+  constructor(position, element, stats) {
+    super(position, element, "hero", stats);
     this.movementLock = false;
     Adventurer._instance = this;
-    this.standByAnimation = 'adventurer';
+    this.standByAnimation = "adventurer";
   }
 
   changeStandByAnimation(animation) {
@@ -139,18 +139,17 @@ class Adventurer extends Character {
 }
 
 class SpriteFactory {
-  static createSpriteByType(type, position, elementId, stats) {
-    const [row, column] = position;
-    const element = this.createElement(type, elementId);
+  static createSprite({ type, position, id, stats, encounterMessage }) {
+    const element = this.createElement(type, id);
     switch (type) {
       case constants.spriteTypes.HERO:
-        return new Adventurer(row, column, element, stats);
+        return new Adventurer(position, element, stats);
       case constants.spriteTypes.VILAIN:
-        return new Vilain(row, column, element, stats);
+        return new Vilain(position, element, stats, encounterMessage);
       case constants.spriteTypes.BAT:
-        return new Monster(row, column, element,type, stats);
+        return new Monster(position, element, type, stats, encounterMessage);
       default:
-        return new Sprite(row, column, element, type, stats);
+        return new Sprite(position, element, type, stats, encounterMessage);
     }
   }
 

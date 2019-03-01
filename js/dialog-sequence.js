@@ -1,31 +1,35 @@
 class DialogSequence {
   constructor(dialogs) {
-    this.dialogs = dialogs;
     this.currentDialog = null;
+    this.messages = [];
+    dialogs.forEach(dialog => {
+      const { row, column } = dialog.trigger;
+      if (!this.messages[row]) {
+        this.messages[row] = [];
+      }
+      this.messages[row][column] = dialog.messages;
+    });
   }
 
-  startDialogIfAvailable(heroRow, heroColumn) {
-    for (let key in this.dialogs) {
-      const { row, column } = this.dialogs[key].trigger;
-      if (
-        row === heroRow &&
-        column === heroColumn &&
-        !this.dialogs[key].processed
-      ) {
-        this.currentDialog = this.dialogs[key];
-        this.dialogs[key].processed = true;
-        this.showNext();
-        break;
-      }
-    }
+  exists(row, column) {
+    return this.messages[row] && this.messages[row][column];
+  }
+
+  start(row, column) {
+    this.currentDialog = { row, column };
+    this.showNext();
   }
 
   showNext() {
-    const messages = this.currentDialog.messages;
+    const { row, column } = this.currentDialog;
+    const messages = this.messages[row][column];
     if (messages.length === 0) {
-      $(".speech-bubble").hide();
+      this.hideBubble();
+      this.currentDialog = null;
+      delete this.messages[row][column];
       return false;
     }
+
     const currentMessage = messages[0];
     let sprite;
     if (currentMessage.speaker === constants.spriteTypes.HERO) {
@@ -33,19 +37,29 @@ class DialogSequence {
     } else {
       sprite = Vilain.getInstance();
     }
-    $(".speech-bubble")
-      .css({
-        left:
-          config.leftOffset + config.tileSize * (sprite.position.column + 1),
-        top: config.topOffset + config.tileSize * sprite.position.row
-      })
-      .html(currentMessage.message)
-      .show();
-
+    this.showBubble(
+      sprite.position.row,
+      sprite.position.column + 1,
+      currentMessage.message
+    );
     messages.shift();
   }
 
+  showBubble(row, column, message) {
+    $(".speech-bubble")
+      .css({
+        left: config.leftOffset + config.tileSize * column,
+        top: config.topOffset + config.tileSize * row
+      })
+      .html(message)
+      .fadeIn();
+  }
+
+  hideBubble() {
+    $(".speech-bubble").fadeOut();
+  }
+
   isDialogInProgress() {
-    return $(".speech-bubble").is(":visible");
+    return this.currentDialog !== null;
   }
 }

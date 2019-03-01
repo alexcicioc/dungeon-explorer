@@ -1,8 +1,16 @@
 class GameMechanics {
+  constructor(map, dialogSequence) {
+    this.map = map;
+    this.dialogSequence = dialogSequence;
+  }
 
-  static checkTileTriggers(row, column) {
-    const sprite = map.getSprite(row, column);
+  checkTileTriggers(row, column) {
+    const sprite = this.map.getSprite(row, column);
     const adventurer = Adventurer.getInstance();
+
+    if (this.dialogSequence.exists(row, column)) {
+      this.dialogSequence.start(row, column);
+    }
 
     if (sprite) {
       if (sprite.type === constants.spriteTypes.HEALTH_POTION) {
@@ -12,22 +20,25 @@ class GameMechanics {
       } else if (this.isAttackable(sprite)) {
         this.attack(adventurer, sprite);
       }
+      if (sprite.encounterMessage) {
+        writeToLog(sprite.encounterMessage);
+      }
     }
   }
 
-  static consumeItem(adventurer, sprite) {
+  consumeItem(adventurer, sprite) {
     adventurer.consume(sprite);
     map.removeSprite(sprite);
   }
 
-  static openChest(adventurer, sprite) {
+  openChest(adventurer, sprite) {
     adventurer.consume(sprite);
-    adventurer.changeStandByAnimation('adventurer-sword');
-    sprite.type = 'chest-open';
-    sprite.element.removeClass('chest-closed').addClass('chest-open');
+    adventurer.changeStandByAnimation("adventurer-sword");
+    sprite.type = "chest-open";
+    sprite.element.removeClass("chest-closed").addClass("chest-open");
   }
 
-  static isAttackable(sprite) {
+  isAttackable(sprite) {
     if (
       sprite.type === constants.spriteTypes.BAT ||
       sprite.type === constants.spriteTypes.VILAIN
@@ -38,8 +49,8 @@ class GameMechanics {
     return false;
   }
 
-  static attack(attacker, defender) {
-    let log = '';
+  attack(attacker, defender) {
+    let log = "";
     const attackerName = attacker.getId().toUpperCase();
     const defenderName = defender.getId().toUpperCase();
 
@@ -71,8 +82,10 @@ class GameMechanics {
       }
       attacker.stats.healingPoints -= defender.stats.strength;
       log += `${attackerName} took ${defender.stats.strength} damage;`;
-
-    } while (attacker.stats.healingPoints > 0 && defender.stats.healingPoints > 0);
+    } while (
+      attacker.stats.healingPoints > 0 &&
+      defender.stats.healingPoints > 0
+    );
     attacker.updateHp();
     defender.updateHp();
     writeToLog(log);
